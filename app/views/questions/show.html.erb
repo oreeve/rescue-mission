@@ -1,0 +1,20 @@
+<h1><%= @question.title %></h1>
+
+<p><%= @question.body %></p><br>
+<ul>
+  <% @answers.each do |answer| %>
+  <li>
+    <%= answer.body %>
+    <% end %>
+  </li>
+</ul>
+<br>
+<br>
+<%= button_to "Edit this Question", edit_question_path, method: :get%>
+<br>
+<%= button_to "Delete this Question", question_path, method: :delete%>
+
+<br>
+<%= button_to "Answer this Question", new_question_answer_path(params[:id]), method: :get %>
+<br>
+<%= button_to "Back to Questions", questions_path, method: :get%>

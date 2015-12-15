@@ -1,0 +1,48 @@
+<h1><%= @question.title %></h1>
+
+<p><%= @question.body %></p><br>
+<ul>
+  <% @question.answers.each do |answer| %>
+  <li>
+    <%= answer.body %>
+    <% end %>
+  </li>
+</ul>
+<br>
+
+<h3>Edit your Question!</h3>
+
+<%= form_for(@question) do |f| %>
+
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_field :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br>
+<%= button_to "Delete this Question", question_path, method: :delete%>
+
+<br>
+<%= button_to "Back to Question", question_path, method: :get%>
